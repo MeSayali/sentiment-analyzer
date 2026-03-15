@@ -5,33 +5,6 @@ comments as **Positive**, **Negative**, or **Neutral**.
 
 ---
 
-## 📁 Project Structure
-
-```
-sentiment-analyzer/
-├── dataset/
-│   ├── generate_dataset.py       ← creates synthetic dataset
-│   └── social_media_sentiment.csv
-├── backend/
-│   ├── train_model.py            ← ML training script
-│   ├── app.py                    ← Flask API server
-│   └── model/
-│       ├── sentiment_model.pkl   ← trained Naive Bayes model
-│       ├── tfidf_vectorizer.pkl  ← fitted TF-IDF vectorizer
-│       └── stats.json            ← dataset statistics for charts
-└── frontend/
-    ├── templates/
-    │   ├── base.html
-    │   ├── index.html            ← Home page
-    │   ├── analyze.html          ← Analyze text page
-    │   ├── insights.html         ← Charts & visualizations
-    │   ├── suggestions.html      ← Strategy suggestions
-    │   └── about.html            ← About the project
-    └── static/
-        ├── css/style.css
-        └── images/               ← word charts, confusion matrix
-```
-
 ---
 
 ## ⚙️ Setup Instructions

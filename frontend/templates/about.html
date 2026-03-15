@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}About — SentimentAI{% endblock %}
+{% block topbar_title %}About This Project{% endblock %}
+
+{% block content %}
+
+<div class="page-header fade">
+  <div class="page-eyebrow">ℹ️ Project Details</div>
+  <h1 class="page-title">About SentimentAI</h1>
+  <p class="page-desc">A complete end-to-end Machine Learning web application — from raw social media CSV to live predictions and visual analytics.</p>
+</div>
+
+<!-- What is Sentiment Analysis -->
+<div class="card fade fade-1 mb-3">
+  <div class="panel-title"><span class="dot"></span>What is Sentiment Analysis?</div>
+  <p class="text-sm c-3" style="line-height:1.85;max-width:760px;">
+    Sentiment analysis is a subfield of Natural Language Processing (NLP) that uses machine learning to
+    determine the emotional tone of text — classifying it as
+    <strong style="color:var(--green);">Positive</strong>,
+    <strong style="color:var(--red);">Negative</strong>, or
+    <strong style="color:var(--blue);">Neutral</strong>.
+    It is widely applied for brand monitoring, customer feedback analysis, market research,
+    political polling, and social media strategy.
+  </p>
+</div>
+
+<!-- ML Model cards -->
+<div class="panel-title fade fade-1"><span class="dot"></span>Machine Learning Model</div>
+<div class="charts-2 fade fade-2 mb-3">
+  <div class="card-flat" style="border-left:3px solid var(--brand);">
+    <div style="font-size:1.4rem;margin-bottom:.6rem;">🤖</div>
+    <div class="fw-7 c-brand mb-1">Multinomial Naive Bayes</div>
+    <p class="text-sm c-3" style="line-height:1.75;">A probabilistic classifier based on Bayes' theorem. Assumes feature independence and excels at text classification with frequency-based features. Trained with <span class="mono" style="font-size:.8rem;">alpha=0.5</span> Laplace smoothing.</p>
+  </div>
+  <div class="card-flat" style="border-left:3px solid var(--blue);">
+    <div style="font-size:1.4rem;margin-bottom:.6rem;">🔢</div>
+    <div class="fw-7 c-blue mb-1">TF-IDF Vectorizer</div>
+    <p class="text-sm c-3" style="line-height:1.75;">Converts raw text to numerical feature vectors. Config: <span class="mono" style="font-size:.8rem;">max_features=5000</span>, <span class="mono" style="font-size:.8rem;">ngram_range=(1,2)</span>, <span class="mono" style="font-size:.8rem;">sublinear_tf=True</span>. Suppresses common words, amplifies distinctive ones.</p>
+  </div>
+  <div class="card-flat" style="border-left:3px solid var(--green);">
+    <div style="font-size:1.4rem;margin-bottom:.6rem;">🧹</div>
+    <div class="fw-7 c-green mb-1">Text Preprocessing</div>
+    <p class="text-sm c-3" style="line-height:1.75;">Lowercase → strip URLs & @mentions → remove emojis → remove punctuation → collapse whitespace. Clean input produces significantly better model performance.</p>
+  </div>
+  <div class="card-flat" style="border-left:3px solid var(--red);">
+    <div style="font-size:1.4rem;margin-bottom:.6rem;">📊</div>
+    <div class="fw-7 c-red mb-1">5-Fold Cross Validation</div>
+    <p class="text-sm c-3" style="line-height:1.75;">Model reliability is measured using 5-fold cross-validation instead of a single train/test split. This gives a reliable estimate of real-world accuracy.</p>
+  </div>
+</div>
+
+<!-- Pipeline -->
+<div class="panel-title fade fade-1"><span class="dot"></span>End-to-End Pipeline</div>
+<div class="card fade fade-2 mb-3" style="overflow-x:auto;">
+  <div style="display:flex;align-items:stretch;min-width:620px;flex-wrap:nowrap;">
+    {% set steps = [
+      ('📂','Load CSV','Pandas + drop Unnamed col'),
+      ('🧹','Clean Text','Lowercase, strip URLs/emoji/punct'),
+      ('🔢','TF-IDF','5000 features, bigrams, sublinear'),
+      ('✂️','Split 80/20','Stratified train/test'),
+      ('🤖','Train NB','MultinomialNB alpha=0.5'),
+      ('📊','5-Fold CV','Cross-validate accuracy'),
+      ('💾','Save Pickle','model.pkl + vectorizer.pkl'),
+    ] %}
+    {% for icon, label, desc in steps %}
+    <div style="flex:1;text-align:center;padding:.9rem .5rem;position:relative;">
+      {% if not loop.last %}
+      <div style="position:absolute;right:-7px;top:50%;transform:translateY(-50%);color:var(--border-2);font-size:1rem;z-index:1;">›</div>
+      {% endif %}
+      <div style="font-size:1.35rem;margin-bottom:5px;">{{ icon }}</div>
+      <div style="font-size:.8rem;font-weight:700;margin-bottom:3px;">{{ label }}</div>
+      <div style="font-size:.7rem;color:var(--text-4);font-family:var(--mono);line-height:1.45;">{{ desc }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Tech Stack -->
+<div class="panel-title fade fade-1"><span class="dot"></span>Tech Stack</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:1rem;margin-bottom:2rem;" class="fade fade-2">
+  {% set techs = [
+    ('🐍','Python 3','Core language','var(--green)'),
+    ('🧮','Scikit-learn','ML training & eval','var(--brand)'),
+    ('🐼','Pandas','Data manipulation','var(--blue)'),
+    ('🌶️','Flask','REST API backend','var(--red)'),
+    ('📈','Chart.js','Live interactive charts','var(--green)'),
+    ('🎨','Matplotlib','Static chart images','var(--brand)'),
+    ('📦','Pickle','Model serialization','var(--text-3)'),
+    ('🔤','Plus Jakarta Sans','UI typography','var(--text-3)'),
+  ] %}
+  {% for icon, name, desc, color in techs %}
+  <div class="card-flat" style="border-left:3px solid {{ color }};padding:1rem 1.1rem;">
+    <div style="font-size:1.15rem;margin-bottom:.4rem;">{{ icon }}</div>
+    <div style="font-weight:700;font-size:.85rem;margin-bottom:.2rem;">{{ name }}</div>
+    <div class="text-xs c-3">{{ desc }}</div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

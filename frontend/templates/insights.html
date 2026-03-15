@@ -1,0 +1,262 @@
+{% extends "base.html" %}
+{% block title %}Insights — SentimentAI{% endblock %}
+{% block topbar_title %}Insights & Visualizations{% endblock %}
+
+{% block head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header fade">
+  <div class="page-eyebrow">📊 Dataset Analytics</div>
+  <h1 class="page-title">Insights &amp; Visualizations</h1>
+  <p class="page-desc">Real data from your CSV — sentiment distribution, platform breakdown, engagement metrics, country analysis, and word frequency clouds.</p>
+</div>
+
+<!-- KPIs -->
+<div class="kpi-row fade fade-1">
+  <div class="kpi-card">
+    <div class="kpi-icon" style="background:var(--brand-light);">📂</div>
+    <div class="kpi-val c-brand" id="s-tot">—</div>
+    <div class="kpi-label">Total Posts</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-icon" style="background:var(--green-light);">🎯</div>
+    <div class="kpi-val c-green" id="s-acc">—</div>
+    <div class="kpi-label">CV Accuracy</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-icon" style="background:var(--green-light);">😊</div>
+    <div class="kpi-val c-green" id="s-pos">—</div>
+    <div class="kpi-label">Positive</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-icon" style="background:var(--red-light);">😞</div>
+    <div class="kpi-val c-red" id="s-neg">—</div>
+    <div class="kpi-label">Negative</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-icon" style="background:var(--blue-light);">😐</div>
+    <div class="kpi-val c-blue" id="s-neu">—</div>
+    <div class="kpi-label">Neutral</div>
+  </div>
+</div>
+
+<!-- Row 1 -->
+<div class="charts-2 fade fade-2">
+  <div class="chart-panel">
+    <div class="panel-title"><span class="dot"></span>Sentiment Distribution</div>
+    <canvas id="c-dist" height="230"></canvas>
+  </div>
+  <div class="chart-panel">
+    <div class="panel-title"><span class="dot" style="background:var(--blue)"></span>Posts by Platform &amp; Sentiment</div>
+    <canvas id="c-platform" height="230"></canvas>
+  </div>
+</div>
+
+<!-- Row 2 -->
+<div class="charts-2 mt-3 fade fade-3">
+  <div class="chart-panel">
+    <div class="panel-title"><span class="dot" style="background:var(--green)"></span>Avg Likes by Sentiment</div>
+    <canvas id="c-likes" height="230"></canvas>
+  </div>
+  <div class="chart-panel">
+    <div class="panel-title"><span class="dot" style="background:var(--red)"></span>Avg Retweets by Sentiment</div>
+    <canvas id="c-rt" height="230"></canvas>
+  </div>
+</div>
+
+<!-- Timeline full-width -->
+<div class="chart-panel mt-3 fade">
+  <div class="panel-title"><span class="dot" style="background:var(--brand)"></span>Sentiment Trend Over Time</div>
+  <canvas id="c-time" height="180"></canvas>
+</div>
+
+<!-- Country + Hourly -->
+<div class="charts-2 mt-3 fade fade-1">
+  <div class="chart-panel">
+    <div class="panel-title"><span class="dot" style="background:var(--green)"></span>Sentiment by Country</div>
+    <canvas id="c-country" height="230"></canvas>
+  </div>
+  <div class="chart-panel">
+    <div class="panel-title"><span class="dot" style="background:var(--blue)"></span>Posts by Hour of Day</div>
+    <canvas id="c-hour" height="230"></canvas>
+  </div>
+</div>
+
+<!-- Platform engagement -->
+<div class="chart-panel mt-3 fade">
+  <div class="panel-title"><span class="dot" style="background:var(--brand)"></span>Avg Engagement by Platform</div>
+  <canvas id="c-eng" height="140"></canvas>
+</div>
+
+<div class="divider"></div>
+
+<!-- ── WordCloud Section ──────────────────────────────────────── -->
+<div class="panel-title fade"><span class="dot" style="background:var(--green)"></span>Word Frequency Clouds</div>
+<p class="text-sm c-3 fade mb-3">Generated from your actual dataset text — bigger words appear more frequently in that sentiment class.</p>
+
+<div class="charts-2 fade fade-1">
+  <div class="chart-panel">
+    <div class="panel-title" style="color:var(--green);"><span class="dot" style="background:var(--green)"></span>Positive Posts</div>
+    <img src="/static/images/wordcloud_positive.png" alt="Positive WordCloud"
+         style="width:100%;border-radius:8px;border:1px solid var(--green-mid);"
+         onerror="this.parentElement.innerHTML+='<p class=\'text-sm c-3\'>Run train_model.py to generate</p>'"/>
+  </div>
+  <div class="chart-panel">
+    <div class="panel-title" style="color:var(--red);"><span class="dot" style="background:var(--red)"></span>Negative Posts</div>
+    <img src="/static/images/wordcloud_negative.png" alt="Negative WordCloud"
+         style="width:100%;border-radius:8px;border:1px solid var(--red-mid);"
+         onerror="this.parentElement.innerHTML+='<p class=\'text-sm c-3\'>Run train_model.py to generate</p>'"/>
+  </div>
+  <div class="chart-panel">
+    <div class="panel-title" style="color:var(--blue);"><span class="dot" style="background:var(--blue)"></span>Neutral Posts</div>
+    <img src="/static/images/wordcloud_neutral.png" alt="Neutral WordCloud"
+         style="width:100%;border-radius:8px;border:1px solid var(--blue-mid);"
+         onerror="this.parentElement.innerHTML+='<p class=\'text-sm c-3\'>Run train_model.py to generate</p>'"/>
+  </div>
+  <div class="chart-panel">
+    <div class="panel-title" style="color:var(--brand);"><span class="dot" style="background:var(--brand)"></span>All Posts Combined</div>
+    <img src="/static/images/wordcloud_all.png" alt="All WordCloud"
+         style="width:100%;border-radius:8px;border:1px solid var(--brand-mid);"
+         onerror="this.parentElement.innerHTML+='<p class=\'text-sm c-3\'>Run train_model.py to generate</p>'"/>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Confusion Matrix + Platform chart images -->
+<div class="panel-title fade"><span class="dot"></span>Model Evaluation</div>
+<div class="charts-2 mt-3 fade fade-1">
+  <div class="chart-panel" style="max-width:480px;">
+    <div class="panel-title"><span class="dot" style="background:var(--brand)"></span>Confusion Matrix</div>
+    <img src="/static/images/confusion_matrix.png" alt="Confusion Matrix" style="width:100%;border-radius:8px;"/>
+  </div>
+  <div class="chart-panel">
+    <div class="panel-title"><span class="dot" style="background:var(--blue)"></span>Engagement Breakdown</div>
+    <img src="/static/images/chart_engagement.png" alt="Engagement" style="width:100%;border-radius:8px;"/>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Hashtag cloud -->
+<div class="panel-title fade"><span class="dot"></span>Top Hashtags</div>
+<div class="chart-panel fade fade-1 mt-2">
+  <div id="hashtag-cloud" class="tag-cloud"></div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+Chart.defaults.color = '#6b7280';
+Chart.defaults.borderColor = '#e5e7eb';
+Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
+Chart.defaults.font.size = 12;
+Chart.defaults.plugins.legend.labels.usePointStyle = true;
+Chart.defaults.plugins.legend.labels.pointStyleWidth = 9;
+Chart.defaults.plugins.legend.labels.padding = 16;
+
+const C = { pos:'#10b981', neg:'#ef4444', neu:'#3b82f6', brand:'#6366f1' };
+
+fetch('/api/insights').then(r=>r.json()).then(d => {
+  const sc = d.sentiment_counts||{};
+  document.getElementById('s-tot').textContent = (d.total_records||0).toLocaleString();
+  document.getElementById('s-acc').textContent = d.accuracy+'%';
+  document.getElementById('s-pos').textContent = sc.Positive||0;
+  document.getElementById('s-neg').textContent = sc.Negative||0;
+  document.getElementById('s-neu').textContent = sc.Neutral||0;
+
+  const S = ['Positive','Negative','Neutral'];
+  const Sc = s => ({Positive:C.pos,Negative:C.neg,Neutral:C.neu}[s]);
+  const gOpts = { x:{grid:{display:false}}, y:{beginAtZero:true,grid:{color:'#f3f4f6'}} };
+
+  // 1. Donut
+  new Chart('c-dist',{type:'doughnut',data:{labels:S,datasets:[{
+    data:S.map(s=>sc[s]||0), backgroundColor:S.map(s=>Sc(s)+'cc'),
+    borderColor:S.map(Sc), borderWidth:2, hoverOffset:6
+  }]},options:{cutout:'65%',plugins:{legend:{position:'bottom'}},animation:{duration:900}}});
+
+  // 2. Grouped bar platform
+  const platforms = [...new Set((d.platform_sentiment||[]).map(x=>x.Platform))];
+  new Chart('c-platform',{type:'bar',data:{labels:platforms,datasets:S.map((s,i)=>({
+    label:s, borderRadius:4, borderWidth:1.5,
+    data:platforms.map(p=>{const r=(d.platform_sentiment||[]).find(x=>x.Platform===p&&x.Sentiment===s);return r?.count||0;}),
+    backgroundColor:Sc(s)+'bb', borderColor:Sc(s),
+  }))},options:{plugins:{legend:{position:'bottom'}},scales:gOpts}});
+
+  // 3. Likes
+  const lk = d.avg_likes_sentiment||{};
+  new Chart('c-likes',{type:'bar',data:{labels:S,datasets:[{
+    data:S.map(s=>lk[s]||0), backgroundColor:S.map(s=>Sc(s)+'cc'),
+    borderColor:S.map(Sc), borderWidth:1.5, borderRadius:6,
+  }]},options:{plugins:{legend:{display:false}},scales:gOpts}});
+
+  // 4. Retweets
+  const rt = d.avg_retweets_sentiment||{};
+  new Chart('c-rt',{type:'bar',data:{labels:S,datasets:[{
+    data:S.map(s=>rt[s]||0), backgroundColor:S.map(s=>Sc(s)+'cc'),
+    borderColor:S.map(Sc), borderWidth:1.5, borderRadius:6,
+  }]},options:{plugins:{legend:{display:false}},scales:gOpts}});
+
+  // 5. Timeline
+  const ot = d.sentiment_over_time||[];
+  const months = [...new Set(ot.map(x=>x.Month))].sort().slice(-12);
+  new Chart('c-time',{type:'line',data:{labels:months,datasets:S.map(s=>({
+    label:s, borderColor:Sc(s), backgroundColor:Sc(s)+'18',
+    data:months.map(m=>ot.find(x=>x.Month===m&&x.Sentiment===s)?.count||0),
+    fill:true, tension:0.35, pointRadius:3, borderWidth:2,
+  }))},options:{plugins:{legend:{position:'bottom'}},scales:{
+    x:{grid:{display:false},ticks:{maxRotation:35,font:{size:10}}},
+    y:{beginAtZero:true,grid:{color:'#f3f4f6'}}},
+    interaction:{mode:'index',intersect:false}}});
+
+  // 6. Country
+  const cs = d.country_sentiment||[];
+  if (cs.length) {
+    const countries = [...new Set(cs.map(x=>x.Country))].slice(0,7);
+    new Chart('c-country',{type:'bar',data:{labels:countries,datasets:S.map((s,i)=>({
+      label:s, borderRadius:4, borderWidth:1.5,
+      data:countries.map(c=>{const r=cs.find(x=>x.Country===c&&x.Sentiment===s);return r?.count||0;}),
+      backgroundColor:Sc(s)+'bb', borderColor:Sc(s),
+    }))},options:{plugins:{legend:{position:'bottom'}},scales:gOpts}});
+  } else {
+    document.getElementById('c-country').closest('.chart-panel').innerHTML +=
+      '<p class="text-sm c-3">No Country column in dataset</p>';
+  }
+
+  // 7. Hourly
+  const hs = d.hour_sentiment||[];
+  if (hs.length) {
+    const hours = [...new Set(hs.map(x=>x.Hour))].sort((a,b)=>a-b);
+    new Chart('c-hour',{type:'line',data:{labels:hours,datasets:S.map(s=>({
+      label:s, borderColor:Sc(s), backgroundColor:Sc(s)+'14',
+      data:hours.map(h=>hs.find(x=>x.Hour===h&&x.Sentiment===s)?.count||0),
+      fill:true, tension:0.4, pointRadius:3, borderWidth:2,
+    }))},options:{plugins:{legend:{position:'bottom'}},scales:{
+      x:{grid:{display:false},title:{display:true,text:'Hour of Day'}},
+      y:{beginAtZero:true,grid:{color:'#f3f4f6'}}}}});
+  }
+
+  // 8. Engagement by platform
+  const ep = d.engagement_by_platform||{};
+  new Chart('c-eng',{type:'bar',data:{labels:Object.keys(ep),datasets:[{
+    label:'Avg Engagement', borderRadius:5,
+    data:Object.values(ep),
+    backgroundColor:['#6366f1cc','#3b82f6cc','#10b981cc','#ef4444cc','#f59e0bcc'],
+  }]},options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{
+    x:{beginAtZero:true,grid:{color:'#f3f4f6'}},y:{grid:{display:false}}}}});
+
+  // Hashtags
+  const hc = document.getElementById('hashtag-cloud');
+  const max = (d.top_hashtags||[])[0]?.count||1;
+  (d.top_hashtags||[]).forEach(t=>{
+    const sp = document.createElement('span'); sp.className='tag';
+    sp.innerHTML = `${t.tag} <span style="font-family:var(--mono);font-size:.72em;color:var(--brand);">${t.count}</span>`;
+    hc.appendChild(sp);
+  });
+});
+</script>
+{% endblock %}

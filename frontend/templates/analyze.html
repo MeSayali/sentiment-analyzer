@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% block title %}Analyze — SentimentAI{% endblock %}
+{% block topbar_title %}Analyze Text{% endblock %}
+
+{% block content %}
+
+<div class="page-header fade">
+  <div class="page-eyebrow">🔍 Live Prediction</div>
+  <h1 class="page-title">Analyze Text</h1>
+  <p class="page-desc">Enter any social media post or comment. The ML model classifies it instantly with a confidence breakdown.</p>
+</div>
+
+<div class="card fade fade-1">
+  <div class="panel-title" style="margin-bottom:.75rem;"><span class="dot"></span>Input Text</div>
+
+  <textarea id="input-text" rows="5"
+    placeholder="Type or paste any text here…
+
+Examples:
+• Enjoying a beautiful day at the park! 🌿
+• Traffic was terrible this morning, so frustrated.
+• Just attended the weekly team standup.
+
+Tip: Press Ctrl + Enter to analyze quickly."></textarea>
+
+  <div class="flex gap-2 mt-2 flex-wrap items-start" style="justify-content:space-between;">
+    <div class="flex gap-1 flex-wrap" style="margin-top:.15rem;">
+      <button class="btn btn-outline btn-sm" onclick="setEx('pos')">😊 Positive sample</button>
+      <button class="btn btn-outline btn-sm" onclick="setEx('neg')">😞 Negative sample</button>
+      <button class="btn btn-outline btn-sm" onclick="setEx('neu')">😐 Neutral sample</button>
+    </div>
+    <button class="btn btn-primary btn-lg" id="go-btn" onclick="runAnalysis()">
+      <span id="go-lbl">⚡ Analyze</span>
+    </button>
+  </div>
+</div>
+
+<!-- Result -->
+<div id="result-wrap">
+  <div class="result-box" id="result-box">
+    <div class="result-emoji" id="r-emoji"></div>
+    <div class="result-label" id="r-label"></div>
+    <div class="result-echo"  id="r-echo"></div>
+
+    <div style="width:100%;max-width:400px;text-align:left;">
+      <div class="text-xs fw-7 c-3" style="text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem;">
+        Confidence Breakdown
+      </div>
+      <div id="conf-bars"></div>
+    </div>
+  </div>
+</div>
+
+<!-- History -->
+<div id="hist-wrap" style="display:none;" class="mt-4 fade">
+  <div class="flex-between mb-2">
+    <div class="panel-title" style="margin-bottom:0;"><span class="dot"></span>Recent Analyses</div>
+    <button class="btn btn-ghost btn-sm" onclick="clearHist()">🗑 Clear</button>
+  </div>
+  <div id="hist-list" style="display:flex;flex-direction:column;gap:.55rem;"></div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+const EX = {
+  pos: "Just got back from an amazing hiking trip, the views were breathtaking! 🏔️",
+  neg: "Traffic was terrible this morning. Stuck for 2 hours with zero updates from the transport app.",
+  neu: "Attended the quarterly review meeting today. Report is due by end of week.",
+};
+const CC = { Positive:'var(--green)', Negative:'var(--red)', Neutral:'var(--blue)' };
+let hist = JSON.parse(sessionStorage.getItem('sa_h')||'[]');
+
+function setEx(t) {
+  document.getElementById('input-text').value = EX[t];
+  document.getElementById('result-wrap').style.display = 'none';
+}
+
+async function runAnalysis() {
+  const text = document.getElementById('input-text').value.trim();
+  if (!text) { showToast('Please enter some text first.','error'); return; }
+  const btn = document.getElementById('go-btn');
+  const lbl = document.getElementById('go-lbl');
+  btn.disabled = true;
+  lbl.innerHTML = '<span class="spin"></span> Analyzing…';
+  try {
+    const res  = await fetch('/api/predict',{ method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text}) });
+    const data = await res.json();
+    renderResult(data);
+    hist.unshift({text:text.slice(0,88), sentiment:data.sentiment, emoji:data.emoji, color:data.color, time:new Date().toLocaleTimeString()});
+    if(hist.length>10) hist.pop();
+    sessionStorage.setItem('sa_h', JSON.stringify(hist));
+    renderHist();
+  } catch(e) { showToast('Cannot reach server. Run: python backend/app.py','error'); }
+  finally { btn.disabled=false; lbl.textContent='⚡ Analyze'; }
+}
+
+function renderResult(d) {
+  const cls = d.sentiment==='Positive'?'pos':d.sentiment==='Negative'?'neg':'neu';
+  const box = document.getElementById('result-box');
+  box.className = 'result-box '+cls;
+  document.getElementById('r-emoji').textContent = d.emoji;
+  document.getElementById('r-label').textContent = d.sentiment;
+  document.getElementById('r-label').style.color = d.color;
+  document.getElementById('r-echo').textContent  = '"'+d.input_text+'"';
+  const bars = document.getElementById('conf-bars');
+  bars.innerHTML = Object.entries(d.confidence).sort((a,b)=>b[1]-a[1]).map(([cls,pct])=>`
+    <div class="prog-item">
+      <div class="prog-row">
+        <span class="prog-name">${cls}</span>
+        <span class="prog-pct">${pct}%</span>
+      </div>
+      <div class="prog-track">
+        <div class="prog-fill" style="background:${CC[cls]||'var(--brand)'};" data-w="${pct}"></div>
+      </div>
+    </div>`).join('');
+  const wrap = document.getElementById('result-wrap');
+  wrap.style.display='block';
+  wrap.scrollIntoView({behavior:'smooth',block:'nearest'});
+  setTimeout(()=>bars.querySelectorAll('.prog-fill').forEach(el=>el.style.width=el.dataset.w+'%'),60);
+}
+
+function renderHist() {
+  if(!hist.length) return;
+  document.getElementById('hist-wrap').style.display='block';
+  document.getElementById('hist-list').innerHTML = hist.map(h=>`
+    <div class="card-flat" style="padding:.7rem 1rem;display:flex;align-items:center;gap:.85rem;border-left:3px solid ${h.color};">
+      <span style="font-size:1.25rem;">${h.emoji}</span>
+      <span style="flex:1;font-size:.82rem;color:var(--text-3);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">"${h.text}${h.text.length>=88?'…':''}"</span>
+      <span class="badge badge-${h.sentiment==='Positive'?'pos':h.sentiment==='Negative'?'neg':'neu'}">${h.sentiment}</span>
+      <span class="text-xs c-3" style="flex-shrink:0;">${h.time}</span>
+    </div>`).join('');
+}
+
+function clearHist() {
+  hist=[];sessionStorage.removeItem('sa_h');
+  document.getElementById('hist-wrap').style.display='none';
+}
+
+document.getElementById('input-text').addEventListener('keydown',e=>{
+  if(e.ctrlKey&&e.key==='Enter') runAnalysis();
+});
+renderHist();
+</script>
+{% endblock %}

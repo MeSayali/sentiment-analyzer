@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>{% block title %}SentimentAI{% endblock %}</title>
+  <link rel="stylesheet" href="/static/css/style.css"/>
+  {% block head %}{% endblock %}
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ── Sidebar ──────────────────────────────────────────── -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">🧠</div>
+      <a href="/" class="sidebar-brand">Sentiment<span>AI</span></a>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <a href="/"            class="nav-item" id="nav-home">
+        <span class="icon">🏠</span> Home
+      </a>
+      <a href="/analyze"     class="nav-item" id="nav-analyze">
+        <span class="icon">🔍</span> Analyze Text
+      </a>
+
+      <div class="nav-section-label">Analytics</div>
+      <a href="/insights"    class="nav-item" id="nav-insights">
+        <span class="icon">📊</span> Insights
+      </a>
+      <a href="/suggestions" class="nav-item" id="nav-suggestions">
+        <span class="icon">💡</span> Suggestions
+      </a>
+
+      <div class="nav-section-label">Project</div>
+      <a href="/about"       class="nav-item" id="nav-about">
+        <span class="icon">ℹ️</span> About
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="accuracy-pill">
+        <span class="label">CV Accuracy</span>
+        <span class="value" id="sb-acc">—</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── Main ──────────────────────────────────────────────── -->
+  <div class="main-content">
+
+    <!-- Top bar -->
+    <header class="topbar">
+      <span class="topbar-title">{% block topbar_title %}SentimentAI{% endblock %}</span>
+      <div class="topbar-right">
+        <span id="tb-records" class="text-xs c-3 mono"></span>
+        <span class="badge badge-brand">Naive Bayes · TF-IDF</span>
+      </div>
+    </header>
+
+    <!-- Page content -->
+    <div class="page-body">
+      {% block content %}{% endblock %}
+    </div>
+
+  </div><!-- /main-content -->
+</div><!-- /layout -->
+
+<!-- Toast container -->
+<div id="toast-container"></div>
+
+<!-- Base scripts -->
+<script>
+// Active nav
+const map = {'/':'nav-home','/analyze':'nav-analyze','/insights':'nav-insights',
+             '/suggestions':'nav-suggestions','/about':'nav-about'};
+const el = document.getElementById(map[window.location.pathname]);
+if (el) el.classList.add('active');
+
+// Load sidebar accuracy
+fetch('/api/insights').then(r=>r.json()).then(d=>{
+  const a = document.getElementById('sb-acc');
+  const r = document.getElementById('tb-records');
+  if(a) a.textContent = (d.accuracy||'—')+'%';
+  if(r) r.textContent = (d.total_records||'').toLocaleString()+' records';
+}).catch(()=>{});
+
+// Toast utility
+function showToast(msg, type='info', ms=3500) {
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.textContent = msg;
+  document.getElementById('toast-container').appendChild(t);
+  setTimeout(()=>t.remove(), ms);
+}
+</script>
+
+{% block scripts %}{% endblock %}
+</body>
+</html>

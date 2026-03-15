@@ -1,0 +1,1948 @@
+{
+  "total_records": 732,
+  "accuracy": 70.8,
+  "cv_std": 6.6,
+  "sentiment_counts": {
+    "Positive": 421,
+    "Negative": 193,
+    "Neutral": 118
+  },
+  "platform_sentiment": [
+    {
+      "Platform": "Facebook",
+      "Sentiment": "Negative",
+      "count": 59
+    },
+    {
+      "Platform": "Facebook",
+      "Sentiment": "Neutral",
+      "count": 40
+    },
+    {
+      "Platform": "Facebook",
+      "Sentiment": "Positive",
+      "count": 132
+    },
+    {
+      "Platform": "Instagram",
+      "Sentiment": "Negative",
+      "count": 66
+    },
+    {
+      "Platform": "Instagram",
+      "Sentiment": "Neutral",
+      "count": 41
+    },
+    {
+      "Platform": "Instagram",
+      "Sentiment": "Positive",
+      "count": 151
+    },
+    {
+      "Platform": "Twitter",
+      "Sentiment": "Negative",
+      "count": 68
+    },
+    {
+      "Platform": "Twitter",
+      "Sentiment": "Neutral",
+      "count": 37
+    },
+    {
+      "Platform": "Twitter",
+      "Sentiment": "Positive",
+      "count": 138
+    }
+  ],
+  "avg_retweets_sentiment": {
+    "Negative": 17.9,
+    "Neutral": 21.1,
+    "Positive": 23.3
+  },
+  "avg_likes_sentiment": {
+    "Negative": 35.7,
+    "Neutral": 42.0,
+    "Positive": 46.5
+  },
+  "engagement_by_platform": {
+    "Facebook": 62.8,
+    "Instagram": 67.7,
+    "Twitter": 62.4
+  },
+  "top_hashtags": [
+    {
+      "tag": "#Serenity",
+      "count": 15
+    },
+    {
+      "tag": "#Gratitude",
+      "count": 13
+    },
+    {
+      "tag": "#Excitement",
+      "count": 13
+    },
+    {
+      "tag": "#Despair",
+      "count": 11
+    },
+    {
+      "tag": "#Nostalgia",
+      "count": 11
+    },
+    {
+      "tag": "#Contentment",
+      "count": 10
+    },
+    {
+      "tag": "#Curiosity",
+      "count": 10
+    },
+    {
+      "tag": "#Awe",
+      "count": 9
+    },
+    {
+      "tag": "#Grief",
+      "count": 9
+    },
+    {
+      "tag": "#Loneliness",
+      "count": 9
+    },
+    {
+      "tag": "#Hopeful",
+      "count": 9
+    },
+    {
+      "tag": "#Enthusiasm",
+      "count": 8
+    },
+    {
+      "tag": "#Joy",
+      "count": 8
+    },
+    {
+      "tag": "#Acceptance",
+      "count": 8
+    },
+    {
+      "tag": "#Confusion",
+      "count": 8
+    }
+  ],
+  "sentiment_over_time": [
+    {
+      "Month": "2010-05",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2010-08",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2010-11",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2011-06",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2011-07",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2011-08",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2011-09",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2012-02",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2012-03",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Month": "2012-11",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2013-04",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Month": "2013-10",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2013-12",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2014-06",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2014-07",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Month": "2014-09",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2015-06",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2015-07",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2015-07",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2015-08",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2015-09",
+      "Sentiment": "Positive",
+      "count": 4
+    },
+    {
+      "Month": "2015-10",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2015-11",
+      "Sentiment": "Neutral",
+      "count": 2
+    },
+    {
+      "Month": "2015-11",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Month": "2015-12",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2015-12",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2015-12",
+      "Sentiment": "Positive",
+      "count": 3
+    },
+    {
+      "Month": "2016-02",
+      "Sentiment": "Positive",
+      "count": 4
+    },
+    {
+      "Month": "2016-03",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Month": "2016-04",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2016-04",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Month": "2016-05",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2016-05",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2016-06",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2016-06",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2016-07",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2016-07",
+      "Sentiment": "Neutral",
+      "count": 2
+    },
+    {
+      "Month": "2016-08",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2016-08",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2016-08",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2016-09",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2016-09",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2016-09",
+      "Sentiment": "Positive",
+      "count": 3
+    },
+    {
+      "Month": "2016-10",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2016-11",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2016-11",
+      "Sentiment": "Positive",
+      "count": 5
+    },
+    {
+      "Month": "2016-12",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2016-12",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2016-12",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Month": "2017-01",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2017-01",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2017-03",
+      "Sentiment": "Negative",
+      "count": 3
+    },
+    {
+      "Month": "2017-03",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2017-04",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2017-04",
+      "Sentiment": "Positive",
+      "count": 3
+    },
+    {
+      "Month": "2017-05",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2017-05",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2017-06",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2017-06",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Month": "2017-07",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2017-08",
+      "Sentiment": "Negative",
+      "count": 3
+    },
+    {
+      "Month": "2017-08",
+      "Sentiment": "Positive",
+      "count": 3
+    },
+    {
+      "Month": "2017-09",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2017-09",
+      "Sentiment": "Positive",
+      "count": 4
+    },
+    {
+      "Month": "2017-10",
+      "Sentiment": "Neutral",
+      "count": 2
+    },
+    {
+      "Month": "2017-10",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2017-11",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2017-11",
+      "Sentiment": "Positive",
+      "count": 4
+    },
+    {
+      "Month": "2017-12",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2017-12",
+      "Sentiment": "Positive",
+      "count": 4
+    },
+    {
+      "Month": "2018-02",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2018-02",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2018-03",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2018-03",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Month": "2018-04",
+      "Sentiment": "Positive",
+      "count": 3
+    },
+    {
+      "Month": "2018-05",
+      "Sentiment": "Negative",
+      "count": 3
+    },
+    {
+      "Month": "2018-05",
+      "Sentiment": "Neutral",
+      "count": 2
+    },
+    {
+      "Month": "2018-05",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2018-06",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2018-06",
+      "Sentiment": "Positive",
+      "count": 5
+    },
+    {
+      "Month": "2018-07",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2018-07",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2018-07",
+      "Sentiment": "Positive",
+      "count": 4
+    },
+    {
+      "Month": "2018-08",
+      "Sentiment": "Negative",
+      "count": 3
+    },
+    {
+      "Month": "2018-08",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2018-08",
+      "Sentiment": "Positive",
+      "count": 8
+    },
+    {
+      "Month": "2018-09",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2018-09",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2018-09",
+      "Sentiment": "Positive",
+      "count": 3
+    },
+    {
+      "Month": "2018-10",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2018-11",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2018-11",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2018-12",
+      "Sentiment": "Negative",
+      "count": 4
+    },
+    {
+      "Month": "2018-12",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2018-12",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Month": "2019-01",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Month": "2019-02",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2019-02",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2019-03",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2019-03",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2019-03",
+      "Sentiment": "Positive",
+      "count": 5
+    },
+    {
+      "Month": "2019-04",
+      "Sentiment": "Negative",
+      "count": 3
+    },
+    {
+      "Month": "2019-04",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2019-04",
+      "Sentiment": "Positive",
+      "count": 6
+    },
+    {
+      "Month": "2019-05",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2019-05",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2019-05",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2019-06",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2019-06",
+      "Sentiment": "Neutral",
+      "count": 2
+    },
+    {
+      "Month": "2019-06",
+      "Sentiment": "Positive",
+      "count": 4
+    },
+    {
+      "Month": "2019-07",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2019-07",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Month": "2019-08",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2019-08",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Month": "2019-09",
+      "Sentiment": "Negative",
+      "count": 4
+    },
+    {
+      "Month": "2019-09",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2019-09",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Month": "2019-10",
+      "Sentiment": "Negative",
+      "count": 4
+    },
+    {
+      "Month": "2019-10",
+      "Sentiment": "Neutral",
+      "count": 2
+    },
+    {
+      "Month": "2019-10",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Month": "2019-11",
+      "Sentiment": "Negative",
+      "count": 3
+    },
+    {
+      "Month": "2019-11",
+      "Sentiment": "Neutral",
+      "count": 2
+    },
+    {
+      "Month": "2019-11",
+      "Sentiment": "Positive",
+      "count": 9
+    },
+    {
+      "Month": "2019-12",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2019-12",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Month": "2020-01",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2020-01",
+      "Sentiment": "Positive",
+      "count": 5
+    },
+    {
+      "Month": "2020-02",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2020-02",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2020-02",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Month": "2020-03",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2020-03",
+      "Sentiment": "Neutral",
+      "count": 2
+    },
+    {
+      "Month": "2020-04",
+      "Sentiment": "Negative",
+      "count": 3
+    },
+    {
+      "Month": "2020-04",
+      "Sentiment": "Neutral",
+      "count": 3
+    },
+    {
+      "Month": "2020-04",
+      "Sentiment": "Positive",
+      "count": 3
+    },
+    {
+      "Month": "2020-05",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2020-05",
+      "Sentiment": "Positive",
+      "count": 4
+    },
+    {
+      "Month": "2020-06",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2020-06",
+      "Sentiment": "Positive",
+      "count": 6
+    },
+    {
+      "Month": "2020-07",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2020-07",
+      "Sentiment": "Positive",
+      "count": 4
+    },
+    {
+      "Month": "2020-08",
+      "Sentiment": "Negative",
+      "count": 4
+    },
+    {
+      "Month": "2020-08",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2020-08",
+      "Sentiment": "Positive",
+      "count": 3
+    },
+    {
+      "Month": "2020-09",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2020-09",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2020-09",
+      "Sentiment": "Positive",
+      "count": 5
+    },
+    {
+      "Month": "2020-11",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2020-11",
+      "Sentiment": "Neutral",
+      "count": 3
+    },
+    {
+      "Month": "2020-11",
+      "Sentiment": "Positive",
+      "count": 3
+    },
+    {
+      "Month": "2020-12",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2020-12",
+      "Sentiment": "Positive",
+      "count": 4
+    },
+    {
+      "Month": "2021-01",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2021-01",
+      "Sentiment": "Positive",
+      "count": 3
+    },
+    {
+      "Month": "2021-02",
+      "Sentiment": "Negative",
+      "count": 4
+    },
+    {
+      "Month": "2021-02",
+      "Sentiment": "Positive",
+      "count": 3
+    },
+    {
+      "Month": "2021-03",
+      "Sentiment": "Negative",
+      "count": 3
+    },
+    {
+      "Month": "2021-03",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2021-04",
+      "Sentiment": "Positive",
+      "count": 5
+    },
+    {
+      "Month": "2021-05",
+      "Sentiment": "Negative",
+      "count": 3
+    },
+    {
+      "Month": "2021-05",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2021-05",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2021-06",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2021-06",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Month": "2021-07",
+      "Sentiment": "Neutral",
+      "count": 3
+    },
+    {
+      "Month": "2021-07",
+      "Sentiment": "Positive",
+      "count": 5
+    },
+    {
+      "Month": "2021-08",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2021-08",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2021-08",
+      "Sentiment": "Positive",
+      "count": 4
+    },
+    {
+      "Month": "2021-09",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2021-09",
+      "Sentiment": "Positive",
+      "count": 4
+    },
+    {
+      "Month": "2021-10",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2021-10",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Month": "2021-11",
+      "Sentiment": "Negative",
+      "count": 3
+    },
+    {
+      "Month": "2021-11",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2021-12",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2021-12",
+      "Sentiment": "Positive",
+      "count": 3
+    },
+    {
+      "Month": "2022-01",
+      "Sentiment": "Negative",
+      "count": 5
+    },
+    {
+      "Month": "2022-01",
+      "Sentiment": "Neutral",
+      "count": 3
+    },
+    {
+      "Month": "2022-01",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2022-02",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2022-02",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2022-02",
+      "Sentiment": "Positive",
+      "count": 4
+    },
+    {
+      "Month": "2022-03",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2022-03",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Month": "2022-04",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2022-04",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2022-04",
+      "Sentiment": "Positive",
+      "count": 6
+    },
+    {
+      "Month": "2022-05",
+      "Sentiment": "Negative",
+      "count": 3
+    },
+    {
+      "Month": "2022-05",
+      "Sentiment": "Neutral",
+      "count": 2
+    },
+    {
+      "Month": "2022-05",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Month": "2022-06",
+      "Sentiment": "Positive",
+      "count": 5
+    },
+    {
+      "Month": "2022-07",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2022-07",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2022-07",
+      "Sentiment": "Positive",
+      "count": 5
+    },
+    {
+      "Month": "2022-08",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Month": "2022-08",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2022-08",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Month": "2022-09",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2022-09",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2022-10",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2022-10",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2022-10",
+      "Sentiment": "Positive",
+      "count": 3
+    },
+    {
+      "Month": "2022-11",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2022-11",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2022-12",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2022-12",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2023-01",
+      "Sentiment": "Negative",
+      "count": 6
+    },
+    {
+      "Month": "2023-01",
+      "Sentiment": "Neutral",
+      "count": 5
+    },
+    {
+      "Month": "2023-01",
+      "Sentiment": "Positive",
+      "count": 46
+    },
+    {
+      "Month": "2023-02",
+      "Sentiment": "Negative",
+      "count": 17
+    },
+    {
+      "Month": "2023-02",
+      "Sentiment": "Neutral",
+      "count": 12
+    },
+    {
+      "Month": "2023-02",
+      "Sentiment": "Positive",
+      "count": 29
+    },
+    {
+      "Month": "2023-03",
+      "Sentiment": "Negative",
+      "count": 3
+    },
+    {
+      "Month": "2023-03",
+      "Sentiment": "Neutral",
+      "count": 5
+    },
+    {
+      "Month": "2023-03",
+      "Sentiment": "Positive",
+      "count": 7
+    },
+    {
+      "Month": "2023-04",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2023-04",
+      "Sentiment": "Neutral",
+      "count": 3
+    },
+    {
+      "Month": "2023-04",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Month": "2023-05",
+      "Sentiment": "Negative",
+      "count": 3
+    },
+    {
+      "Month": "2023-05",
+      "Sentiment": "Neutral",
+      "count": 4
+    },
+    {
+      "Month": "2023-05",
+      "Sentiment": "Positive",
+      "count": 8
+    },
+    {
+      "Month": "2023-06",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2023-06",
+      "Sentiment": "Neutral",
+      "count": 6
+    },
+    {
+      "Month": "2023-06",
+      "Sentiment": "Positive",
+      "count": 24
+    },
+    {
+      "Month": "2023-07",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2023-07",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Month": "2023-07",
+      "Sentiment": "Positive",
+      "count": 19
+    },
+    {
+      "Month": "2023-08",
+      "Sentiment": "Negative",
+      "count": 6
+    },
+    {
+      "Month": "2023-08",
+      "Sentiment": "Neutral",
+      "count": 2
+    },
+    {
+      "Month": "2023-08",
+      "Sentiment": "Positive",
+      "count": 23
+    },
+    {
+      "Month": "2023-09",
+      "Sentiment": "Negative",
+      "count": 22
+    },
+    {
+      "Month": "2023-09",
+      "Sentiment": "Positive",
+      "count": 10
+    },
+    {
+      "Month": "2023-10",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Month": "2023-10",
+      "Sentiment": "Neutral",
+      "count": 14
+    },
+    {
+      "Month": "2023-10",
+      "Sentiment": "Positive",
+      "count": 9
+    }
+  ],
+  "top_users": [
+    {
+      "User": "WinterWarmth",
+      "total_eng": 255
+    },
+    {
+      "User": "Bookworm",
+      "total_eng": 247
+    },
+    {
+      "User": "ForestDreamer",
+      "total_eng": 241
+    },
+    {
+      "User": "CosmosExplorer",
+      "total_eng": 240
+    },
+    {
+      "User": "CarnivalDreamer",
+      "total_eng": 216
+    },
+    {
+      "User": "CulinaryExplorer",
+      "total_eng": 210
+    },
+    {
+      "User": "MusicHarmonist",
+      "total_eng": 210
+    },
+    {
+      "User": "PeakConqueror",
+      "total_eng": 207
+    }
+  ],
+  "country_sentiment": [
+    {
+      "Country": "Australia",
+      "Sentiment": "Negative",
+      "count": 23
+    },
+    {
+      "Country": "Australia",
+      "Sentiment": "Neutral",
+      "count": 15
+    },
+    {
+      "Country": "Australia",
+      "Sentiment": "Positive",
+      "count": 37
+    },
+    {
+      "Country": "Austria",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Country": "Belgium",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Country": "Brazil",
+      "Sentiment": "Negative",
+      "count": 6
+    },
+    {
+      "Country": "Brazil",
+      "Sentiment": "Positive",
+      "count": 11
+    },
+    {
+      "Country": "Cambodia",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Country": "Canada",
+      "Sentiment": "Negative",
+      "count": 38
+    },
+    {
+      "Country": "Canada",
+      "Sentiment": "Neutral",
+      "count": 27
+    },
+    {
+      "Country": "Canada",
+      "Sentiment": "Positive",
+      "count": 70
+    },
+    {
+      "Country": "China",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Country": "Colombia",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Country": "Czech Republic",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Country": "Denmark",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Country": "France",
+      "Sentiment": "Negative",
+      "count": 6
+    },
+    {
+      "Country": "France",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Country": "France",
+      "Sentiment": "Positive",
+      "count": 9
+    },
+    {
+      "Country": "Germany",
+      "Sentiment": "Negative",
+      "count": 5
+    },
+    {
+      "Country": "Germany",
+      "Sentiment": "Neutral",
+      "count": 3
+    },
+    {
+      "Country": "Germany",
+      "Sentiment": "Positive",
+      "count": 6
+    },
+    {
+      "Country": "Greece",
+      "Sentiment": "Neutral",
+      "count": 5
+    },
+    {
+      "Country": "India",
+      "Sentiment": "Negative",
+      "count": 23
+    },
+    {
+      "Country": "India",
+      "Sentiment": "Neutral",
+      "count": 11
+    },
+    {
+      "Country": "India",
+      "Sentiment": "Positive",
+      "count": 36
+    },
+    {
+      "Country": "Ireland",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Country": "Italy",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Country": "Italy",
+      "Sentiment": "Neutral",
+      "count": 2
+    },
+    {
+      "Country": "Italy",
+      "Sentiment": "Positive",
+      "count": 7
+    },
+    {
+      "Country": "Jamaica",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Country": "Japan",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Country": "Japan",
+      "Sentiment": "Neutral",
+      "count": 3
+    },
+    {
+      "Country": "Japan",
+      "Sentiment": "Positive",
+      "count": 10
+    },
+    {
+      "Country": "Jordan",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Country": "Kenya",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Country": "Maldives",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Country": "Netherlands",
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Country": "Netherlands",
+      "Sentiment": "Positive",
+      "count": 3
+    },
+    {
+      "Country": "Norway",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Country": "Peru",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Country": "Portugal",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Country": "Scotland",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Country": "South Africa",
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Country": "South Africa",
+      "Sentiment": "Positive",
+      "count": 4
+    },
+    {
+      "Country": "Spain",
+      "Sentiment": "Negative",
+      "count": 3
+    },
+    {
+      "Country": "Spain",
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Country": "Spain",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Country": "Sweden",
+      "Sentiment": "Positive",
+      "count": 2
+    },
+    {
+      "Country": "Switzerland",
+      "Sentiment": "Positive",
+      "count": 3
+    },
+    {
+      "Country": "Thailand",
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Country": "UK",
+      "Sentiment": "Negative",
+      "count": 39
+    },
+    {
+      "Country": "UK",
+      "Sentiment": "Neutral",
+      "count": 23
+    },
+    {
+      "Country": "UK",
+      "Sentiment": "Positive",
+      "count": 81
+    },
+    {
+      "Country": "USA",
+      "Sentiment": "Negative",
+      "count": 43
+    },
+    {
+      "Country": "USA",
+      "Sentiment": "Neutral",
+      "count": 25
+    },
+    {
+      "Country": "USA",
+      "Sentiment": "Positive",
+      "count": 120
+    }
+  ],
+  "hour_sentiment": [
+    {
+      "Hour": 0,
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Hour": 2,
+      "Sentiment": "Negative",
+      "count": 1
+    },
+    {
+      "Hour": 3,
+      "Sentiment": "Negative",
+      "count": 3
+    },
+    {
+      "Hour": 5,
+      "Sentiment": "Positive",
+      "count": 1
+    },
+    {
+      "Hour": 6,
+      "Sentiment": "Positive",
+      "count": 4
+    },
+    {
+      "Hour": 7,
+      "Sentiment": "Positive",
+      "count": 7
+    },
+    {
+      "Hour": 8,
+      "Sentiment": "Negative",
+      "count": 4
+    },
+    {
+      "Hour": 8,
+      "Sentiment": "Neutral",
+      "count": 5
+    },
+    {
+      "Hour": 8,
+      "Sentiment": "Positive",
+      "count": 14
+    },
+    {
+      "Hour": 9,
+      "Sentiment": "Negative",
+      "count": 11
+    },
+    {
+      "Hour": 9,
+      "Sentiment": "Neutral",
+      "count": 4
+    },
+    {
+      "Hour": 9,
+      "Sentiment": "Positive",
+      "count": 13
+    },
+    {
+      "Hour": 10,
+      "Sentiment": "Negative",
+      "count": 6
+    },
+    {
+      "Hour": 10,
+      "Sentiment": "Neutral",
+      "count": 7
+    },
+    {
+      "Hour": 10,
+      "Sentiment": "Positive",
+      "count": 17
+    },
+    {
+      "Hour": 11,
+      "Sentiment": "Negative",
+      "count": 12
+    },
+    {
+      "Hour": 11,
+      "Sentiment": "Neutral",
+      "count": 7
+    },
+    {
+      "Hour": 11,
+      "Sentiment": "Positive",
+      "count": 18
+    },
+    {
+      "Hour": 12,
+      "Sentiment": "Negative",
+      "count": 10
+    },
+    {
+      "Hour": 12,
+      "Sentiment": "Neutral",
+      "count": 6
+    },
+    {
+      "Hour": 12,
+      "Sentiment": "Positive",
+      "count": 22
+    },
+    {
+      "Hour": 13,
+      "Sentiment": "Negative",
+      "count": 6
+    },
+    {
+      "Hour": 13,
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Hour": 13,
+      "Sentiment": "Positive",
+      "count": 23
+    },
+    {
+      "Hour": 14,
+      "Sentiment": "Negative",
+      "count": 31
+    },
+    {
+      "Hour": 14,
+      "Sentiment": "Neutral",
+      "count": 13
+    },
+    {
+      "Hour": 14,
+      "Sentiment": "Positive",
+      "count": 50
+    },
+    {
+      "Hour": 15,
+      "Sentiment": "Negative",
+      "count": 14
+    },
+    {
+      "Hour": 15,
+      "Sentiment": "Neutral",
+      "count": 5
+    },
+    {
+      "Hour": 15,
+      "Sentiment": "Positive",
+      "count": 28
+    },
+    {
+      "Hour": 16,
+      "Sentiment": "Negative",
+      "count": 15
+    },
+    {
+      "Hour": 16,
+      "Sentiment": "Neutral",
+      "count": 13
+    },
+    {
+      "Hour": 16,
+      "Sentiment": "Positive",
+      "count": 41
+    },
+    {
+      "Hour": 17,
+      "Sentiment": "Negative",
+      "count": 13
+    },
+    {
+      "Hour": 17,
+      "Sentiment": "Neutral",
+      "count": 9
+    },
+    {
+      "Hour": 17,
+      "Sentiment": "Positive",
+      "count": 26
+    },
+    {
+      "Hour": 18,
+      "Sentiment": "Negative",
+      "count": 16
+    },
+    {
+      "Hour": 18,
+      "Sentiment": "Neutral",
+      "count": 14
+    },
+    {
+      "Hour": 18,
+      "Sentiment": "Positive",
+      "count": 35
+    },
+    {
+      "Hour": 19,
+      "Sentiment": "Negative",
+      "count": 14
+    },
+    {
+      "Hour": 19,
+      "Sentiment": "Neutral",
+      "count": 16
+    },
+    {
+      "Hour": 19,
+      "Sentiment": "Positive",
+      "count": 45
+    },
+    {
+      "Hour": 20,
+      "Sentiment": "Negative",
+      "count": 11
+    },
+    {
+      "Hour": 20,
+      "Sentiment": "Neutral",
+      "count": 4
+    },
+    {
+      "Hour": 20,
+      "Sentiment": "Positive",
+      "count": 35
+    },
+    {
+      "Hour": 21,
+      "Sentiment": "Negative",
+      "count": 14
+    },
+    {
+      "Hour": 21,
+      "Sentiment": "Neutral",
+      "count": 6
+    },
+    {
+      "Hour": 21,
+      "Sentiment": "Positive",
+      "count": 21
+    },
+    {
+      "Hour": 22,
+      "Sentiment": "Negative",
+      "count": 10
+    },
+    {
+      "Hour": 22,
+      "Sentiment": "Neutral",
+      "count": 7
+    },
+    {
+      "Hour": 22,
+      "Sentiment": "Positive",
+      "count": 16
+    },
+    {
+      "Hour": 23,
+      "Sentiment": "Negative",
+      "count": 2
+    },
+    {
+      "Hour": 23,
+      "Sentiment": "Neutral",
+      "count": 1
+    },
+    {
+      "Hour": 23,
+      "Sentiment": "Positive",
+      "count": 4
+    }
+  ],
+  "platforms": [
+    "Twitter",
+    "Instagram",
+    "Facebook"
+  ],
+  "countries": [
+    "USA",
+    "Canada",
+    "UK",
+    "Australia",
+    "India",
+    "France",
+    "Brazil",
+    "Japan",
+    "Greece",
+    "Germany",
+    "Sweden",
+    "Italy",
+    "Netherlands",
+    "South Africa",
+    "Spain",
+    "Portugal",
+    "Switzerland",
+    "Austria",
+    "Belgium",
+    "Denmark",
+    "Czech Republic",
+    "Jordan",
+    "Peru",
+    "Maldives",
+    "China",
+    "Cambodia",
+    "Norway",
+    "Colombia",
+    "Ireland",
+    "Jamaica",
+    "Kenya",
+    "Scotland",
+    "Thailand"
+  ],
+  "date_range": {
+    "start": "May 15, 2010",
+    "end": "Oct 22, 2023"
+  }
+}

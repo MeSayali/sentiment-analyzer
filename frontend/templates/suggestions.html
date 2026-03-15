@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+{% block title %}Suggestions — SentimentAI{% endblock %}
+{% block topbar_title %}Strategy Suggestions{% endblock %}
+
+{% block head %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header fade">
+  <div class="page-eyebrow">💡 Recommendations</div>
+  <h1 class="page-title">Strategy Suggestions</h1>
+  <p class="page-desc">Data-driven action items based on sentiment patterns, platform performance, and engagement trends from your dataset.</p>
+</div>
+
+<!-- Health Score -->
+<div class="card fade fade-1 mb-3">
+  <div class="panel-title"><span class="dot"></span>Sentiment Health Score</div>
+  <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
+    <div style="flex:1;min-width:200px;">
+      <div id="h-score" style="font-size:3rem;font-weight:800;line-height:1;font-family:var(--mono);letter-spacing:-0.04em;margin-bottom:.4rem;">—</div>
+      <div id="h-badge" style="margin-bottom:.65rem;"></div>
+      <p class="text-sm c-3" id="h-desc"></p>
+    </div>
+    <div style="width:140px;height:140px;flex-shrink:0;">
+      <canvas id="c-health"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- Platform scorecards -->
+<div class="panel-title fade fade-1"><span class="dot"></span>Platform Performance</div>
+<div id="plat-row" class="kpi-row fade fade-2" style="margin-bottom:2rem;"></div>
+
+<!-- Pos/Neg ratio chart -->
+<div class="chart-panel fade fade-2 mb-3">
+  <div class="panel-title"><span class="dot"></span>Positive vs Negative Rate by Platform</div>
+  <canvas id="c-ratio" height="190"></canvas>
+</div>
+
+<!-- Country sentiment chart -->
+<div class="charts-2 fade fade-3 mb-3">
+  <div class="chart-panel">
+    <div class="panel-title"><span class="dot" style="background:var(--green)"></span>Sentiment by Country</div>
+    <canvas id="c-ctry" height="220"></canvas>
+  </div>
+  <div class="chart-panel">
+    <div class="panel-title"><span class="dot" style="background:var(--brand)"></span>Engagement by Platform</div>
+    <canvas id="c-eng2" height="220"></canvas>
+  </div>
+</div>
+
+<!-- Suggestions -->
+<div class="panel-title fade"><span class="dot"></span>Action Items</div>
+<div class="sug-list fade fade-1" id="sug-list"></div>
+
+<!-- Top Users -->
+<div class="divider"></div>
+<div class="panel-title fade"><span class="dot"></span>Top Users by Engagement</div>
+<div class="card-flat fade fade-1" style="overflow:hidden;">
+  <table class="table">
+    <thead><tr><th>#</th><th>User</th><th>Total Engagement</th><th>Medal</th></tr></thead>
+    <tbody id="users-body"></tbody>
+  </table>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+Chart.defaults.color='#6b7280'; Chart.defaults.borderColor='#e5e7eb';
+Chart.defaults.font.family="'Plus Jakarta Sans',sans-serif"; Chart.defaults.font.size=12;
+Chart.defaults.plugins.legend.labels.usePointStyle=true;
+Chart.defaults.plugins.legend.labels.padding=16;
+
+const C={pos:'#10b981',neg:'#ef4444',neu:'#3b82f6',brand:'#6366f1'};
+const S=['Positive','Negative','Neutral'];
+const Sc=s=>({Positive:C.pos,Negative:C.neg,Neutral:C.neu}[s]);
+
+fetch('/api/insights').then(r=>r.json()).then(d=>{
+  const sc=d.sentiment_counts||{};
+  const tot=d.total_records||1;
+  const pos=sc.Positive||0, neg=sc.Negative||0;
+
+  // Health score
+  const score = Math.min(100,Math.max(0,Math.round(((pos-neg*0.8)/tot)*100+50)));
+  const isG=score>=65, isM=score>=42;
+  const scoreColor = isG?C.pos:isM?'#d97706':C.neg;
+  document.getElementById('h-score').textContent = score+'/100';
+  document.getElementById('h-score').style.color = scoreColor;
+  document.getElementById('h-badge').innerHTML =
+    isG ? '<span class="badge badge-pos">✅ Healthy Sentiment</span>' :
+    isM ? '<span class="badge" style="background:#fefce8;color:#d97706;border-color:#fde68a;">⚠️ Moderate</span>' :
+          '<span class="badge badge-neg">🚨 Needs Attention</span>';
+  document.getElementById('h-desc').textContent =
+    isG ? 'Positive sentiment dominates. Keep amplifying engaging content.' :
+    isM ? 'Mixed signals across platforms. Review channels with higher negative rates.' :
+          'High negative sentiment detected. Focus on issue resolution and community engagement.';
+
+  new Chart('c-health',{type:'doughnut',data:{labels:['Score','Remaining'],datasets:[{
+    data:[score,100-score], backgroundColor:[scoreColor+'cc','#f3f4f6'], borderWidth:0
+  }]},options:{cutout:'74%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw}%`}}}}});
+
+  // Platform cards
+  const platforms=[...new Set((d.platform_sentiment||[]).map(x=>x.Platform))];
+  const icons={Twitter:'🐦',Instagram:'📸',Facebook:'👥',LinkedIn:'💼',Reddit:'🔴'};
+  const pr=document.getElementById('plat-row');
+  platforms.forEach(p=>{
+    const rows=(d.platform_sentiment||[]).filter(x=>x.Platform===p);
+    const pPos=rows.find(x=>x.Sentiment==='Positive')?.count||0;
+    const pTot=rows.reduce((a,r)=>a+r.count,0)||1;
+    const ratio=Math.round((pPos/pTot)*100);
+    const eng=d.engagement_by_platform?.[p]||0;
+    const col=ratio>=60?C.pos:ratio>=40?'#d97706':C.neg;
+    const div=document.createElement('div'); div.className='kpi-card';
+    div.innerHTML=`
+      <div class="kpi-icon" style="background:${col}18;">${icons[p]||'📱'}</div>
+      <div style="font-weight:700;font-size:.82rem;margin-bottom:.5rem;">${p}</div>
+      <div class="kpi-val" style="color:${col};font-size:1.6rem;">${ratio}%</div>
+      <div class="kpi-label">Positive Rate</div>
+      <div style="margin-top:.55rem;font-size:.73rem;color:var(--text-4);">
+        Avg Eng: <span style="color:var(--text-1);font-weight:600;font-family:var(--mono);">${eng}</span>
+      </div>`;
+    pr.appendChild(div);
+  });
+
+  // Ratio bar chart
+  const ratioP=platforms.map(p=>{const rows=(d.platform_sentiment||[]).filter(x=>x.Platform===p);const pT=rows.reduce((a,r)=>a+r.count,0)||1;return Math.round((rows.find(x=>x.Sentiment==='Positive')?.count||0)/pT*100);});
+  const ratioN=platforms.map(p=>{const rows=(d.platform_sentiment||[]).filter(x=>x.Platform===p);const pT=rows.reduce((a,r)=>a+r.count,0)||1;return Math.round((rows.find(x=>x.Sentiment==='Negative')?.count||0)/pT*100);});
+  new Chart('c-ratio',{type:'bar',data:{labels:platforms,datasets:[
+    {label:'Positive %',data:ratioP,backgroundColor:C.pos+'bb',borderColor:C.pos,borderWidth:1.5,borderRadius:4},
+    {label:'Negative %',data:ratioN,backgroundColor:C.neg+'bb',borderColor:C.neg,borderWidth:1.5,borderRadius:4},
+  ]},options:{plugins:{legend:{position:'bottom'}},scales:{
+    x:{grid:{display:false}},
+    y:{beginAtZero:true,max:100,grid:{color:'#f3f4f6'},ticks:{callback:v=>v+'%'}}}}});
+
+  // Country chart
+  const cs=d.country_sentiment||[];
+  if(cs.length){
+    const countries=[...new Set(cs.map(x=>x.Country))].slice(0,6);
+    new Chart('c-ctry',{type:'bar',data:{labels:countries,datasets:S.map(s=>({
+      label:s,borderRadius:3,borderWidth:1.5,
+      data:countries.map(c=>{const r=cs.find(x=>x.Country===c&&x.Sentiment===s);return r?.count||0;}),
+      backgroundColor:Sc(s)+'bb',borderColor:Sc(s),
+    }))},options:{plugins:{legend:{position:'bottom'}},scales:{
+      x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#f3f4f6'}}}}});
+  } else {
+    document.getElementById('c-ctry').closest('.chart-panel').innerHTML='<div class="panel-title"><span class="dot" style="background:var(--green)"></span>Sentiment by Country</div><p class="text-sm c-3" style="margin-top:.5rem;">No Country column in dataset</p>';
+  }
+
+  // Engagement chart
+  const ep=d.engagement_by_platform||{};
+  new Chart('c-eng2',{type:'bar',data:{labels:Object.keys(ep),datasets:[{
+    label:'Avg Engagement',data:Object.values(ep),borderRadius:5,
+    backgroundColor:['#6366f1cc','#3b82f6cc','#10b981cc','#ef4444cc','#f59e0bcc'],
+  }]},options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{
+    x:{beginAtZero:true,grid:{color:'#f3f4f6'}},y:{grid:{display:false}}}}});
+
+  // Action suggestions
+  const negRate=Math.round(((sc.Negative||0)/tot)*100);
+  const posRate=Math.round(((sc.Positive||0)/tot)*100);
+  const rt=d.avg_retweets_sentiment||{};
+  const lk=d.avg_likes_sentiment||{};
+  const topTag=(d.top_hashtags||[])[0]?.tag||'';
+
+  const items=[
+    negRate>35?{icon:'🚨',bg:C.neg+'12',col:C.neg,
+      title:`High Negative Rate — ${negRate}% of posts`,
+      text:`Identify recurring pain points in negative posts. Respond proactively and create content that directly addresses the issues driving negative sentiment.`}:null,
+    posRate>50?{icon:'🚀',bg:C.pos+'12',col:C.pos,
+      title:`Strong Positive Momentum — ${posRate}% positive`,
+      text:`Amplify this by promoting top-performing posts, running user story campaigns, and encouraging user-generated content across all platforms.`}:null,
+    (lk.Positive||0)>(lk.Negative||0)?{icon:'❤️',bg:'#fef3c7',col:'#d97706',
+      title:'Positive Posts Get More Likes',
+      text:`Positive content averages ${(lk.Positive||0).toFixed(1)} likes vs ${(lk.Negative||0).toFixed(1)} for negative. Prioritise uplifting, solution-focused content to maximise reach.`}:null,
+    topTag?{icon:'#️⃣',bg:C.brand+'12',col:C.brand,
+      title:`Top Trending Tag: ${topTag}`,
+      text:`"${topTag}" is your most-used hashtag. Build campaigns around this tag to boost discoverability and tap into an already-engaged audience.`}:null,
+    {icon:'📅',bg:C.neu+'12',col:C.neu,
+      title:'Monitor Monthly Sentiment Shifts',
+      text:'Use the timeline chart on the Insights page to spot sudden spikes. A spike in negative sentiment in any month warrants a content audit for that period.'},
+    {icon:'🌍',bg:C.green+'12',col:C.pos,
+      title:'Tailor Content by Country',
+      text:'Different countries show different sentiment profiles. Localise content tone and platform choice based on regional audience behaviour for better engagement.'},
+    {icon:'🎯',bg:C.brand+'12',col:C.brand,
+      title:'Platform-Specific Strategies',
+      text:'LinkedIn favours professional achievements. Twitter rewards reactive, real-time content. Instagram drives higher likes with visual storytelling. Reddit values authenticity.'},
+  ].filter(Boolean);
+
+  const sl=document.getElementById('sug-list');
+  items.forEach(item=>{
+    const div=document.createElement('div'); div.className='sug-item';
+    div.innerHTML=`
+      <div class="sug-ico" style="background:${item.bg};">${item.icon}</div>
+      <div class="sug-body">
+        <h4 style="color:${item.col};">${item.title}</h4>
+        <p>${item.text}</p>
+      </div>`;
+    sl.appendChild(div);
+  });
+
+  // Top users
+  const tb=document.getElementById('users-body');
+  (d.top_users||[]).slice(0,8).forEach((u,i)=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`
+      <td class="mono c-3" style="font-size:.82rem;">${i+1}</td>
+      <td><strong>${u.User}</strong></td>
+      <td class="mono c-brand">${u.total_eng||u.total_rt||0}</td>
+      <td style="font-size:1.1rem;">${i===0?'🥇':i===1?'🥈':i===2?'🥉':'—'}</td>`;
+    tb.appendChild(tr);
+  });
+});
+</script>
+{% endblock %}

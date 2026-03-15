@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block title %}Home — SentimentAI{% endblock %}
+{% block topbar_title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<!-- Hero -->
+<div class="page-header fade">
+  <div class="page-eyebrow">🧠 ML · NLP · Social Media Analytics</div>
+  <h1 class="page-title">Social Media<br>Sentiment Analyzer</h1>
+  <p class="page-desc">
+    Classify social media posts as <strong>Positive</strong>, <strong>Negative</strong>,
+    or <strong>Neutral</strong> using <strong>Multinomial Naive Bayes</strong> + TF-IDF.
+    Upload your own CSV, get live predictions and visual insights.
+  </p>
+  <div class="flex gap-2 mt-3" style="flex-wrap:wrap;">
+    <a href="/analyze"  class="btn btn-primary btn-lg">🔍 Analyze Text</a>
+    <a href="/insights" class="btn btn-outline btn-lg">📊 View Insights</a>
+  </div>
+</div>
+
+<!-- KPIs -->
+<div class="kpi-row fade fade-1">
+  <div class="kpi-card">
+    <div class="kpi-icon" style="background:var(--brand-light);">📂</div>
+    <div class="kpi-val c-brand" id="k-total">—</div>
+    <div class="kpi-label">Total Records</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-icon" style="background:var(--green-light);">✅</div>
+    <div class="kpi-val c-green" id="k-acc">—</div>
+    <div class="kpi-label">Model Accuracy</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-icon" style="background:var(--green-light);">😊</div>
+    <div class="kpi-val c-green" id="k-pos">—</div>
+    <div class="kpi-label">Positive Posts</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-icon" style="background:var(--red-light);">😞</div>
+    <div class="kpi-val c-red" id="k-neg">—</div>
+    <div class="kpi-label">Negative Posts</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-icon" style="background:var(--blue-light);">😐</div>
+    <div class="kpi-val c-blue" id="k-neu">—</div>
+    <div class="kpi-label">Neutral Posts</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ML Pipeline -->
+<div class="card fade fade-2">
+  <div class="panel-title"><span class="dot"></span>ML Pipeline</div>
+  <div id="pipeline" style="display:flex;align-items:center;flex-wrap:wrap;overflow-x:auto;gap:0;"></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- Feature grid -->
+<div class="fade fade-3">
+  <div class="panel-title" style="margin-bottom:1rem;"><span class="dot"></span>Features</div>
+  <div class="charts-2">
+    <div class="card-flat" style="border-left:3px solid var(--brand);">
+      <div style="font-size:1.4rem;margin-bottom:0.6rem;">⚡</div>
+      <div class="fw-7 mb-1">Live Sentiment Prediction</div>
+      <p class="text-sm c-3">Instant Positive / Negative / Neutral classification with confidence scores for any text input.</p>
+    </div>
+    <div class="card-flat" style="border-left:3px solid var(--green);">
+      <div style="font-size:1.4rem;margin-bottom:0.6rem;">📊</div>
+      <div class="fw-7 mb-1">8+ Interactive Charts</div>
+      <p class="text-sm c-3">Distribution, platform breakdown, engagement metrics, country analysis, hourly activity, and more.</p>
+    </div>
+    <div class="card-flat" style="border-left:3px solid var(--red);">
+      <div style="font-size:1.4rem;margin-bottom:0.6rem;">☁️</div>
+      <div class="fw-7 mb-1">Real WordCloud Images</div>
+      <p class="text-sm c-3">Generated word frequency clouds per sentiment class — showing which words define each category.</p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+fetch('/api/insights').then(r=>r.json()).then(d=>{
+  const sc = d.sentiment_counts || {};
+  document.getElementById('k-total').textContent = (d.total_records||0).toLocaleString();
+  document.getElementById('k-acc').textContent   = d.accuracy + '%';
+  document.getElementById('k-pos').textContent   = sc.Positive || 0;
+  document.getElementById('k-neg').textContent   = sc.Negative || 0;
+  document.getElementById('k-neu').textContent   = sc.Neutral  || 0;
+});
+
+// Pipeline
+const steps = [
+  {icon:'📂',label:'Load CSV',     mono:'read_csv()'},
+  {icon:'🧹',label:'Clean Text',   mono:'regex + lower'},
+  {icon:'🔢',label:'TF-IDF',       mono:'5000 features'},
+  {icon:'✂️', label:'80/20 Split', mono:'stratified'},
+  {icon:'🤖',label:'Naive Bayes',  mono:'alpha=0.5'},
+  {icon:'📊',label:'Evaluate',     mono:'CV + F1'},
+  {icon:'💾',label:'Save Model',   mono:'pickle'},
+];
+const pw = document.getElementById('pipeline');
+steps.forEach((s,i) => {
+  pw.innerHTML += `
+    <div style="flex:1;min-width:98px;text-align:center;padding:.8rem .4rem;position:relative;">
+      ${i < steps.length-1 ? `<div style="position:absolute;right:-6px;top:50%;transform:translateY(-50%);font-size:1rem;color:var(--border-2);">›</div>` : ''}
+      <div style="font-size:1.4rem;margin-bottom:5px;">${s.icon}</div>
+      <div style="font-size:.78rem;font-weight:700;margin-bottom:2px;">${s.label}</div>
+      <div style="font-size:.7rem;color:var(--text-4);font-family:var(--mono);">${s.mono}</div>
+    </div>`;
+});
+</script>
+{% endblock %}

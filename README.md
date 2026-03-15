@@ -5,8 +5,6 @@ comments as **Positive**, **Negative**, or **Neutral**.
 
 ---
 
----
-
 ## ⚙️ Setup Instructions
 
 ### 1. Install Python dependencies

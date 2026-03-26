@@ -4,6 +4,11 @@ A complete Machine Learning + Web Application project for classifying social med
 comments as **Positive**, **Negative**, or **Neutral**.
 
 ---
+## 🚀 Live Demo
+
+👉 https://sentiment-analyzer-ebd0.onrender.com
+
+---
 
 ## ⚙️ Setup Instructions
 
